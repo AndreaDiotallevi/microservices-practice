@@ -8,6 +8,14 @@ build:
     local:
         push: false
     artifacts:
+        - image: andreadiotallevi/core
+          context: core
+          docker:
+              dockerfile: Dockerfile
+          sync:
+              manual:
+                  - src: "auth/**/*.py"
+                    dest: .
         - image: andreadiotallevi/client
           context: client
           docker:
