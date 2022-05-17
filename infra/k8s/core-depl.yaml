@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: core-depl
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: core
+    template:
+        metadata:
+            labels:
+                app: core
+        spec:
+            containers:
+                - name: core
+                  image: andreadiotallevi/core
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: core-srv
+spec:
+    selector:
+        app: core
+    ports:
+        - name: core
+          protocol: TCP
+          port: 8000
+          targetPort: 8000
